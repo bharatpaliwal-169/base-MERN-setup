@@ -30,21 +30,17 @@ export const login = async (req, res) => {
 }
 
 export const signup = async (req, res) => {
-  const {firstName,lastName,email,password,confirmPassword} = req.body;
-
+  const {fullName,email,password} = req.body;
   try {
     const existingUser = await auth.findOne({email});
     
     if(existingUser){
       return res.status(400).json({message : "user already exists"});
     }
-    if(password !== confirmPassword){
-      return res.status(400).json({message : "password and confirmPassword mismatched"});
-    }
 
     const hashPassword = await bcrypt.hash(password,12);
 
-    const result = await auth.create({email, password: hashPassword,name : `${firstName} ${lastName}`});
+    const result = await auth.create({email, password: hashPassword,fullName });
     console.log(result);
     const token = jwt.sign({email : result.email, id:result._id}, SECRET, { expiresIn: "1h" });
     res.status(200).json({result,token});

@@ -1,1 +1,1 @@
-# MERN base
+# MERN base code
