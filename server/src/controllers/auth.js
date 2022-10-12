@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import auth from "../models/auth.js"
+import Gauth from "../models/Gauth.js"
 import dotenv from 'dotenv';
 dotenv.config()
 const SECRET = process.env.SECRET;
@@ -46,5 +47,19 @@ export const signup = async (req, res) => {
     res.status(200).json({result,token});
   } catch (error) {
     res.status(500).json({message: "something went wrong " + error.message});
+  }
+}
+
+export const oauth = async (req, res) => {
+  const {email} = req.body;
+
+  try {
+    const existingUser = await Gauth.findOne({email});
+    if(!existingUser) {
+      await Gauth.create({email})
+    }
+    res.status(200).json({result : "ok"});
+  } catch (error) {
+    res.status(500).json({message: "something went wrong"});
   }
 }
