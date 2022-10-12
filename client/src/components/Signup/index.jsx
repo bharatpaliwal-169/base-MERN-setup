@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from 'react';
 import { useAuthContext } from '../../Context/AuthProvider';
-import {Container,Paper,Typography,TextField,InputAdornment, IconButton,Link} from '@mui/material';
+import {Container,Paper,Typography,Divider,
+  TextField,InputAdornment, IconButton,Link} from '@mui/material';
 import {Visibility,VisibilityOff} from "@mui/icons-material";
 import SendIcon from '@mui/icons-material/Send';
 import LoadingButton from '@mui/lab/LoadingButton';
 import useStyles from './style'
+import GoogleOAuth from '../Google'
 
 
 const Signup = () =>{
@@ -39,6 +41,11 @@ const Signup = () =>{
             Signup
           </Typography>
 
+          <GoogleOAuth type="Sign up with Google" />
+          <Typography variant="h6" >
+            OR
+          </Typography>
+          <Divider />
           <form onSubmit={handleSubmit}>
 
             <TextField style={{marginTop : '2rem'}}

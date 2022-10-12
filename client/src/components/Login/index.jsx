@@ -1,12 +1,13 @@
 import React,{useState,useEffect} from 'react';
 import { useAuthContext } from '../../Context/AuthProvider';
 
-import {Container,Paper,Typography,TextField,InputAdornment, IconButton,Link} from '@mui/material';
+import {Container,Paper,Typography,TextField,
+  InputAdornment, IconButton,Link, Divider} from '@mui/material';
 import {Visibility,VisibilityOff} from "@mui/icons-material";
 import SendIcon from '@mui/icons-material/Send';
 import LoadingButton from '@mui/lab/LoadingButton';
 import useStyles from './style'
-
+import GoogleOAuth from '../Google';
 
 const Login = () => {
   const {LoginUser,result} = useAuthContext();
@@ -30,6 +31,7 @@ const Login = () => {
   useEffect(() => {
     setLoading(false);
     console.log(result);
+    localStorage.setItem('user', JSON.stringify(result));
   }, [LoginUser,result])
   
 
@@ -41,6 +43,12 @@ const Login = () => {
           Login
         </Typography>
 
+        <GoogleOAuth type= "Log in with Google" />
+
+        <Typography variant="h6" >
+          OR
+        </Typography>
+        <Divider />
         <form onSubmit={handleSubmit}>
 
           <TextField style={{marginTop : '2rem',marginBottom : '2rem'}}

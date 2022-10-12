@@ -3,6 +3,7 @@ import * as api from '../API';
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({children}) => {
+  // const [currentUser,setCurrentUser] = useState(JSON.parse(localStorage.getItem('currentUser')));
   const [result,setResult] = useState([]);
   const [newUser,setNewUser] = useState([]);
 
@@ -27,11 +28,21 @@ export const AuthContextProvider = ({children}) => {
       console.log("error in Signup Context Method");
     }
   }
+
+  const oauth = async (user) => {
+    try {
+      const res = await api.oauth(user);
+      console.log(res);
+    } catch (error) {
+      console.log("error in Oauth Context Method");
+    }
+  }
+  
   return (
-    <AuthContext.Provider value = {{LoginUser,SignupUser,result,newUser}}>
+    <AuthContext.Provider value = {{LoginUser,SignupUser,oauth,result,newUser}}>
       {children}
     </AuthContext.Provider>
-  )
+  );
 
 }
 
