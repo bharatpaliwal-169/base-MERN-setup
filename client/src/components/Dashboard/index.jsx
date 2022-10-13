@@ -9,6 +9,7 @@ const Dashboard = () => {
         <Link href='/auth/login' underline="none"> Login </Link>
         <Link href='/auth/signup' underline="none"> Signup </Link>
         <Link href='/auth/googleoauth' underline="none"> Google Login/Signup </Link>
+        <Link href='/pic' underline="none"> Image Handler </Link>
       </Container>
     </Box>
   )
