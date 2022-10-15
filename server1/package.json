@@ -1,0 +1,19 @@
+{
+  "name": "nodeoptimized",
+  "version": "1.0.0",
+  "description": "node optimizations for better peformance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Bharat Paliwal",
+  "license": "ISC",
+  "dependencies": {
+    "busboy": "^1.6.0",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.20",
+    "xlsx": "^0.18.5"
+  }
+}
